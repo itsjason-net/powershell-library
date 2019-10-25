@@ -60,28 +60,28 @@
       }
   }
 
-# Capture and convert the Tenant ID
+# Capture and convert the tenant ID
   $tenantid = Get-MSOLCompanyInformation | select objectID
   $tenantid = $tenantid.objectID
   $tenantid = $tenantid -replace '-','%2D'
 
-# Capture and convert the Site ID
+# Capture and convert the site ID
   $siteid = Get-PnPSite -Includes Id | select id
   $siteid = $siteid.Id -replace '-','%2D'
   $siteid = '%7B' + $siteid + '%7D'
 
-# Capture and convert the Web ID
+# Capture and convert the web ID
   $webid = Get-pnpweb -Includes Id | select id
   $webid = $webid.Id -replace '-','%2D'
   $webid = '%7B' + $webid + '%7D'
 
-# Capture and convert the List ID
+# Capture and convert the list ID
   $listid = Get-PnPList $docLib -Includes Id | select id
   $listid = $listid.Id -replace '-','%2D'
   $listid = '%7B' + $pnplist + '%7D'
   $listid = $listid.toUpper()
 
-# Builds the Full URL
+# Builds the complete URL
   $libraryid = 'tenantId=' + $tenantid + '&siteId=' + $siteid + '&webId=' + $webid + '&listId=' + $listid + '&webUrl=https%3A%2F%2F' + $tenant + '%2Esharepoint%2Ecom%2Fsites%2F' + $siteName + '&version=1'
 
 # Display the complete URL to Copy and Paste
